@@ -3,47 +3,27 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.8"
-
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
-
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
-
-# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails"
-
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
-
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
-
-# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
-
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
-# Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "rails",                      "7.0.8"
+gem "image_processing",           "1.12.2"
+gem "active_storage_validations", "0.9.8"
+gem "devise"
+gem "faker",                      "2.21.0"
+gem "bootstrap-sass",             "3.4.1"
+# gem 'pagy',                       '~> 6.0'
+gem "will_paginate",              "3.3.1"
+gem "bootstrap-will_paginate",    "1.0.0"
+gem "pg",                         "1.3.5"
+gem "sassc-rails",                "2.1.2"
+gem "sprockets-rails",            "3.4.2"
+gem "importmap-rails",            "1.1.0"
+gem "turbo-rails",                "1.1.1"
+gem "stimulus-rails",             "1.0.4"
+gem "jbuilder",                   "2.11.5"
+gem "puma",                       "5.6.4"
+gem "bootsnap",                   "1.12.0", require: false
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -68,8 +48,17 @@ group :development do
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem "capybara",                 "3.37.1"
+  gem "selenium-webdriver",       "4.2.0"
+  gem "webdrivers",               "5.0.0"
+  gem "rails-controller-testing", "1.0.5"
+  gem "minitest",                 "5.15.0"
+  gem "minitest-reporters",       "1.5.0"
+  gem "guard",                    "2.18.0"
+  gem "guard-minitest",           "2.4.6"
+end
 
+group :production do
+  # gem "pg",         "1.3.5"
+  gem "aws-sdk-s3", "1.114.0", require: false
 end
