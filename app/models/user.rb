@@ -6,6 +6,7 @@
 #  admin                  :boolean          default(FALSE), not null
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  matric_no              :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -23,4 +24,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :books, dependent: :destroy
+  has_many :authors, dependent: :destroy
+  has_many :publishers, dependent: :destroy
+  has_many :categories, dependent: :destroy
 end
