@@ -21,6 +21,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Edition < ApplicationRecord
+  validates :book_id, presence: true
   belongs_to :user
   belongs_to :book
 end

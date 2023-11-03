@@ -29,10 +29,18 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Book < ApplicationRecord
+    validates :title, :author_id, :category_id, :publisher_id, :user_id, presence: true
     belongs_to :user
     belongs_to :author
     belongs_to :category
     belongs_to :publisher
 
     has_many :editions, dependent: :destroy
+
+    has_one_attached :cover_image
+
+    validates :cover_image, presence: true,   content_type: { in: %w[image/jpeg image/png],
+                                      message: "must be a valid image format" },
+                      size:         { less_than: 1.megabytes,
+                                      message:   "should be less than 1MB" }
 end

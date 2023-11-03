@@ -25,9 +25,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :username, presence: true
   has_many :books, dependent: :destroy
   has_many :authors, dependent: :destroy
   has_many :publishers, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :editions, dependent: :destroy
+
+  def name
+    username
+  end
 end
