@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_110840) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_03_112554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,15 +74,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_110840) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "editons", force: :cascade do |t|
-    t.string "name"
+  create_table "editions", force: :cascade do |t|
+    t.string "iname"
     t.date "published_date"
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_editons_on_book_id"
-    t.index ["user_id"], name: "index_editons_on_user_id"
+    t.index ["book_id"], name: "index_editions_on_book_id"
+    t.index ["user_id"], name: "index_editions_on_user_id"
   end
 
   create_table "publishers", force: :cascade do |t|
@@ -114,6 +114,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_110840) do
   add_foreign_key "books", "publishers"
   add_foreign_key "books", "users"
   add_foreign_key "categories", "users"
-  add_foreign_key "editons", "books"
-  add_foreign_key "editons", "users"
+  add_foreign_key "editions", "books"
+  add_foreign_key "editions", "users"
 end
