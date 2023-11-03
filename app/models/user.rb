@@ -29,4 +29,5 @@ class User < ApplicationRecord
   has_many :authors, dependent: :destroy
   has_many :publishers, dependent: :destroy
   has_many :categories, dependent: :destroy
+  has_many :editions, dependent: :destroy
 end
