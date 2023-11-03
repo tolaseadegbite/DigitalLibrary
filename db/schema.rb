@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_115507) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_03_122403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_115507) do
     t.text "bio"
   end
 
-  create_table "books", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "editions", force: :cascade do |t|
+    t.string "name"
+    t.date "published_date"
+    t.bigint "user_id", null: false
+    t.bigint "resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_id"], name: "index_editions_on_resource_id"
+    t.index ["user_id"], name: "index_editions_on_user_id"
+  end
+
+  create_table "publishers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.text "about"
+  end
+
+  create_table "resources", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.date "published_date"
@@ -61,37 +88,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_115507) do
     t.bigint "publisher_id", null: false
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
-    t.index ["author_id"], name: "index_books_on_author_id"
-    t.index ["category_id"], name: "index_books_on_category_id"
-    t.index ["publisher_id"], name: "index_books_on_publisher_id"
-    t.index ["user_id"], name: "index_books_on_user_id"
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_categories_on_user_id"
-  end
-
-  create_table "editions", force: :cascade do |t|
-    t.string "iname"
-    t.date "published_date"
-    t.bigint "user_id", null: false
-    t.bigint "book_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_editions_on_book_id"
-    t.index ["user_id"], name: "index_editions_on_user_id"
-  end
-
-  create_table "publishers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.text "about"
+    t.index ["author_id"], name: "index_resources_on_author_id"
+    t.index ["category_id"], name: "index_resources_on_category_id"
+    t.index ["publisher_id"], name: "index_resources_on_publisher_id"
+    t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,11 +111,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_115507) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "books", "authors"
-  add_foreign_key "books", "categories"
-  add_foreign_key "books", "publishers"
-  add_foreign_key "books", "users"
   add_foreign_key "categories", "users"
-  add_foreign_key "editions", "books"
+  add_foreign_key "editions", "resources"
   add_foreign_key "editions", "users"
+  add_foreign_key "resources", "authors"
+  add_foreign_key "resources", "categories"
+  add_foreign_key "resources", "publishers"
+  add_foreign_key "resources", "users"
 end

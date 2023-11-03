@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: books
+# Table name: resources
 #
 #  id             :bigint           not null, primary key
 #  description    :text
@@ -16,10 +16,10 @@
 #
 # Indexes
 #
-#  index_books_on_author_id     (author_id)
-#  index_books_on_category_id   (category_id)
-#  index_books_on_publisher_id  (publisher_id)
-#  index_books_on_user_id       (user_id)
+#  index_resources_on_author_id     (author_id)
+#  index_resources_on_category_id   (category_id)
+#  index_resources_on_publisher_id  (publisher_id)
+#  index_resources_on_user_id       (user_id)
 #
 # Foreign Keys
 #
@@ -30,7 +30,7 @@
 #
 require "test_helper"
 
-class BookTest < ActiveSupport::TestCase
+class ResourceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

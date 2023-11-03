@@ -26,7 +26,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :username, presence: true
-  has_many :books, dependent: :destroy
+  has_many :resources, dependent: :destroy
   has_many :authors, dependent: :destroy
   has_many :publishers, dependent: :destroy
   has_many :categories, dependent: :destroy

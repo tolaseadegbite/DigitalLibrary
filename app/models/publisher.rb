@@ -11,5 +11,5 @@
 #
 class Publisher < ApplicationRecord
   belongs_to :user
-  has_many :books, dependent: :destroy
+  has_many :resources, dependent: :destroy
 end

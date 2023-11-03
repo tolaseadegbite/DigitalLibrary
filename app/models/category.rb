@@ -18,5 +18,5 @@
 #
 class Category < ApplicationRecord
   belongs_to :user
-  has_many :books
+  has_many :resources
 end

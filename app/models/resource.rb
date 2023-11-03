@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: books
+# Table name: resources
 #
 #  id             :bigint           not null, primary key
 #  description    :text
@@ -16,10 +16,10 @@
 #
 # Indexes
 #
-#  index_books_on_author_id     (author_id)
-#  index_books_on_category_id   (category_id)
-#  index_books_on_publisher_id  (publisher_id)
-#  index_books_on_user_id       (user_id)
+#  index_resources_on_author_id     (author_id)
+#  index_resources_on_category_id   (category_id)
+#  index_resources_on_publisher_id  (publisher_id)
+#  index_resources_on_user_id       (user_id)
 #
 # Foreign Keys
 #
@@ -28,7 +28,7 @@
 #  fk_rails_...  (publisher_id => publishers.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class Book < ApplicationRecord
+class Resource < ApplicationRecord
     validates :title, :author_id, :category_id, :publisher_id, :user_id, presence: true
     belongs_to :user
     belongs_to :author
