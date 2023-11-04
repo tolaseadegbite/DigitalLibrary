@@ -9,15 +9,15 @@
                 <%= f.hidden_field :resource_id, value: resource.id %>
                 <%#= f.hidden_field :likeable_type, value: likeable.class.to_s %>
                 
-                <%= f.button class: "btn rounded-1 btn-success border" do %>
-                    Remove from Currently Reading
+                <%= f.button class: "btn rounded-1 btn-light border" do %>
+                    Add to Currently Reading
                 <% end %>
             <% end %>
         <% else %>
             <%= form_with url: reading_path(reading), method: :delete do |f| %>
                 
-                <%= f.button class: "btn btn-light border rounded-1" do %>
-                    Add to Currently Reading
+                <%= f.button class: "btn btn-success border rounded-1" do %>
+                    Remove from Currently Reading
                 <% end %>
             <% end %>
         <% end %>

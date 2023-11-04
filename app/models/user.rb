@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :editions, dependent: :destroy
   has_many :potential_reads, dependent: :destroy
   has_many :readings, dependent: :destroy
+  has_many :reads, dependent: :destroy
 
   def name
     username
