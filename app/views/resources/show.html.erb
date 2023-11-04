@@ -1,0 +1,19 @@
+<div class="cover-image">
+    <%= image_tag(@resource.cover_image, size: "180x290.31") %>
+</div>
+
+<h1><%= @resource.title %></h1>
+<p><%= @resource.description %></p>
+<p>Published: <%= @resource.published_date %></p>
+<p>Pages: <%= @resource.pages %></p>
+<p>Author: <%= link_to @resource.author.name, author_path(@resource.author) %></p>
+<p>Category: <%= link_to @resource.category.name, categories_path(@resource.category) %></p>
+<p>Resource type: <%= link_to @resource.resource_type.name, '#' %></p>
+
+<% if @resource.editions.present? %>
+    <ul>
+        <% @resource.editions.each do |resource| %>
+            <li><%= edition.name %></li>
+        <% end %>
+    </ul>
+<% end %>
