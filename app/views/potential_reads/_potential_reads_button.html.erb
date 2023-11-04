@@ -1,0 +1,25 @@
+<div id="potential_read_button">
+    <% if user_signed_in? %>
+
+        <% potential_read = current_user.potential_reads.find_by(resource: resource) %>
+
+        <% if potential_read.nil? %>
+
+            <%= form_with model: [PotentialRead.new], method: :post do |f| %>
+                <%= f.hidden_field :resource_id, value: resource.id %>
+                <%#= f.hidden_field :likeable_type, value: likeable.class.to_s %>
+                
+                <%= f.button class: "btn rounded-1 btn-light border" do %>
+                    Remove from potential reads
+                <% end %>
+            <% end %>
+        <% else %>
+            <%= form_with url: potential_read_path(potential_read), method: :delete do |f| %>
+                
+                <%= f.button class: "btn btn-success rounded-1" do %>
+                    Want to read
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>

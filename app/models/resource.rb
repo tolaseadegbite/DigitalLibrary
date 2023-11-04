@@ -40,6 +40,7 @@ class Resource < ApplicationRecord
     belongs_to :publisher
 
     has_many :editions, dependent: :destroy
+    has_many :potential_reads, dependent: :destroy
 
     has_one_attached :cover_image
 

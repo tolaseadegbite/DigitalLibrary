@@ -31,6 +31,7 @@ class User < ApplicationRecord
   has_many :publishers, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :editions, dependent: :destroy
+  has_many :potential_reads, dependent: :destroy
 
   def name
     username

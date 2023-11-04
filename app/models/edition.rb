@@ -24,4 +24,5 @@ class Edition < ApplicationRecord
   validates :resource_id, presence: true
   belongs_to :user
   belongs_to :resource
+
 end

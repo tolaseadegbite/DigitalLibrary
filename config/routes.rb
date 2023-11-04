@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :authors
   resources :publishers
   resources :categories
+  resources :potential_reads, only: [:create, :destroy]
 end

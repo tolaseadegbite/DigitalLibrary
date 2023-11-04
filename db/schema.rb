@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_03_130918) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_04_090759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_130918) do
     t.index ["user_id"], name: "index_editions_on_user_id"
   end
 
+  create_table "potential_reads", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_id"], name: "index_potential_reads_on_resource_id"
+    t.index ["user_id", "resource_id"], name: "index_potential_reads_on_user_id_and_resource_id", unique: true
+    t.index ["user_id"], name: "index_potential_reads_on_user_id"
+  end
+
   create_table "publishers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -124,6 +134,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_03_130918) do
   add_foreign_key "categories", "users"
   add_foreign_key "editions", "resources"
   add_foreign_key "editions", "users"
+  add_foreign_key "potential_reads", "resources"
+  add_foreign_key "potential_reads", "users"
   add_foreign_key "resource_types", "users"
   add_foreign_key "resources", "authors"
   add_foreign_key "resources", "categories"

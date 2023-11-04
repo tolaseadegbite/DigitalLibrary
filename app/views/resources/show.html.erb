@@ -2,6 +2,8 @@
     <%= image_tag(@resource.cover_image, size: "180x290.31") %>
 </div>
 
+<%= render 'potential_reads/potential_reads_button', resource: @resource %>
+
 <h1><%= @resource.title %></h1>
 <p><%= @resource.description %></p>
 <p>Published: <%= @resource.published_date %></p>
@@ -12,8 +14,8 @@
 
 <% if @resource.editions.present? %>
     <ul>
-        <% @resource.editions.each do |resource| %>
-            <li><%= edition.name %></li>
+        <% @resource.editions.each do |edition| %>
+            <li><%= edition.name %> | <%= edition.published_date %></li>
         <% end %>
     </ul>
 <% end %>
