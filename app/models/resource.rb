@@ -41,6 +41,7 @@ class Resource < ApplicationRecord
 
     has_many :editions, dependent: :destroy
     has_many :potential_reads, dependent: :destroy
+    has_many :readings, dependent: :destroy
 
     has_one_attached :cover_image
 

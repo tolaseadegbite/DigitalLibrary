@@ -1,23 +1,23 @@
-<div id="potential_read_button">
+<div id="reading_button">
     <% if user_signed_in? %>
 
-        <% potential_read = current_user.potential_reads.find_by(resource: resource) %>
+        <% reading = current_user.readings.find_by(resource: resource) %>
 
-        <% if potential_read.nil? %>
+        <% if reading.nil? %>
 
-            <%= form_with model: [PotentialRead.new], method: :post do |f| %>
+            <%= form_with model: [Reading.new], method: :post do |f| %>
                 <%= f.hidden_field :resource_id, value: resource.id %>
                 <%#= f.hidden_field :likeable_type, value: likeable.class.to_s %>
                 
                 <%= f.button class: "btn rounded-1 btn-success border" do %>
-                    Remove from potential reads
+                    Remove from Currently Reading
                 <% end %>
             <% end %>
         <% else %>
-            <%= form_with url: potential_read_path(potential_read), method: :delete do |f| %>
+            <%= form_with url: reading_path(reading), method: :delete do |f| %>
                 
                 <%= f.button class: "btn btn-light border rounded-1" do %>
-                    Want to read
+                    Add to Currently Reading
                 <% end %>
             <% end %>
         <% end %>

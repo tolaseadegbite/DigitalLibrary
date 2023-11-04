@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :publishers
   resources :categories
   resources :potential_reads, only: [:create, :destroy]
+  resources :readings, only: [:create, :destroy]
 end
