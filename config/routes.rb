@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :potential_reads, only: [:create, :destroy]
   resources :readings, only: [:create, :destroy]
   resources :reads, only: [:create, :destroy]
+  resources :loans, only: [:create, :destroy]
 end

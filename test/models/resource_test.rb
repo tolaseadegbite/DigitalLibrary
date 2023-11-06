@@ -3,6 +3,7 @@
 # Table name: resources
 #
 #  id                   :bigint           not null, primary key
+#  copies               :integer
 #  description          :text
 #  pages                :integer
 #  published_date       :date

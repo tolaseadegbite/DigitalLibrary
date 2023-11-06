@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_04_130202) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_04_144004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_130202) do
     t.datetime "updated_at", null: false
     t.index ["resource_id"], name: "index_editions_on_resource_id"
     t.index ["user_id"], name: "index_editions_on_user_id"
+  end
+
+  create_table "loan_durations", force: :cascade do |t|
+    t.integer "days", default: 7, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_loan_durations_on_user_id"
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "loan_duration_id", null: false
+    t.index ["loan_duration_id"], name: "index_loans_on_loan_duration_id"
+    t.index ["resource_id"], name: "index_loans_on_resource_id"
+    t.index ["user_id", "resource_id"], name: "index_loans_on_user_id_and_resource_id", unique: true
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "potential_reads", force: :cascade do |t|
@@ -136,6 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_130202) do
     t.bigint "category_id", null: false
     t.bigint "resource_type_id", null: false
     t.bigint "resource_language_id", null: false
+    t.integer "copies"
     t.index ["author_id"], name: "index_resources_on_author_id"
     t.index ["category_id"], name: "index_resources_on_category_id"
     t.index ["publisher_id"], name: "index_resources_on_publisher_id"
@@ -164,6 +185,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_130202) do
   add_foreign_key "categories", "users"
   add_foreign_key "editions", "resources"
   add_foreign_key "editions", "users"
+  add_foreign_key "loan_durations", "users"
+  add_foreign_key "loans", "loan_durations"
+  add_foreign_key "loans", "resources"
+  add_foreign_key "loans", "users"
   add_foreign_key "potential_reads", "resources"
   add_foreign_key "potential_reads", "users"
   add_foreign_key "readings", "resources"

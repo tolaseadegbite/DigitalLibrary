@@ -3,6 +3,7 @@
 # Table name: resources
 #
 #  id                   :bigint           not null, primary key
+#  copies               :integer
 #  description          :text
 #  pages                :integer
 #  published_date       :date
@@ -41,11 +42,13 @@ class Resource < ApplicationRecord
     belongs_to :author
     belongs_to :category
     belongs_to :publisher
+    belongs_to :resource_language
 
     has_many :editions, dependent: :destroy
     has_many :potential_reads, dependent: :destroy
     has_many :readings, dependent: :destroy
     has_many :reads, dependent: :destroy
+    has_many :loans, dependent: :destroy
 
     has_one_attached :cover_image
 

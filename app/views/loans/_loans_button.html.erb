@@ -1,0 +1,40 @@
+<div id="loan_button">
+    <% if user_signed_in? %>
+
+        <% loan = current_user.loans.find_by(resource: resource) %>
+
+        <% if loan.nil? %>
+
+            <!-- Loan options modal -->
+            <button type="button" class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Borrow options
+            </button>
+        <% else %>
+            <%= form_with url: loan_path(loan), method: :delete do |f| %>
+            
+                <%= f.button class: "btn btn-success border rounded-1" do %>
+                    Return <%= loan.resource.resource_type.name %>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content rounded-0">
+      <div class="row text-dark p-3">
+        <h5>Loan duration:</h5>
+        <%= form_with model: [Loan.new], method: :post do |f| %>
+            <%= f.hidden_field :resource_id, value: resource.id %>
+            <%= f.select :loan_duration_id, LoanDuration.all.pluck(:days, :id), {  }, class: "form-control rounded-0" %>
+            
+            <%= f.button class: "btn btn-sm rounded-1 btn-success border mt-3" do %>
+                Borrow
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

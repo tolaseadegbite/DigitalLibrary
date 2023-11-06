@@ -34,6 +34,9 @@ class User < ApplicationRecord
   has_many :potential_reads, dependent: :destroy
   has_many :readings, dependent: :destroy
   has_many :reads, dependent: :destroy
+  has_many :loans, dependent: :destroy
+  has_many :resource_languages, dependent: :destroy
+  has_many :loan_durations, dependent: :destroy
 
   def name
     username
