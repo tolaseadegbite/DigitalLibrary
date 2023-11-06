@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :readings, only: [:create, :destroy]
   resources :reads, only: [:create, :destroy]
   resources :loans, only: [:create, :destroy]
+  resources :waitlists, only: [:create, :destroy]
 end

@@ -4,11 +4,14 @@
         <% loan = current_user.loans.find_by(resource: resource) %>
 
         <% if loan.nil? %>
-
-            <!-- Loan options modal -->
-            <button type="button" class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Borrow options
-            </button>
+            <% unless resource.copies == resource.loans_count %>
+                <!-- Loan options modal -->
+                <button type="button" class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Borrow options
+                </button>
+            <% else %>
+                Not available, <%= render 'waitlists/waitlists_button', resource: @resource %>
+            <% end %>
         <% else %>
             <%= form_with url: loan_path(loan), method: :delete do |f| %>
             

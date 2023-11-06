@@ -5,9 +5,10 @@
 #  id                   :bigint           not null, primary key
 #  copies               :integer
 #  description          :text
+#  loans_count          :integer
+#  name                 :string
 #  pages                :integer
 #  published_date       :date
-#  title                :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  author_id            :bigint           not null
@@ -48,7 +49,9 @@ class Resource < ApplicationRecord
     has_many :potential_reads, dependent: :destroy
     has_many :readings, dependent: :destroy
     has_many :reads, dependent: :destroy
+    has_many :waitlists, dependent: :destroy
     has_many :loans, dependent: :destroy
+    has_many :borrowers, through: :loans, source: :user
 
     has_one_attached :cover_image
 

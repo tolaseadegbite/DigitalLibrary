@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_04_144004) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_06_131154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -144,7 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_144004) do
   end
 
   create_table "resources", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
     t.text "description"
     t.date "published_date"
     t.integer "pages"
@@ -157,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_144004) do
     t.bigint "resource_type_id", null: false
     t.bigint "resource_language_id", null: false
     t.integer "copies"
+    t.integer "loans_count"
     t.index ["author_id"], name: "index_resources_on_author_id"
     t.index ["category_id"], name: "index_resources_on_category_id"
     t.index ["publisher_id"], name: "index_resources_on_publisher_id"
@@ -178,6 +179,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_144004) do
     t.string "matric_no"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "waitlists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_id"], name: "index_waitlists_on_resource_id"
+    t.index ["user_id", "resource_id"], name: "index_waitlists_on_user_id_and_resource_id", unique: true
+    t.index ["user_id"], name: "index_waitlists_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -203,4 +214,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_144004) do
   add_foreign_key "resources", "resource_languages"
   add_foreign_key "resources", "resource_types"
   add_foreign_key "resources", "users"
+  add_foreign_key "waitlists", "resources"
+  add_foreign_key "waitlists", "users"
 end

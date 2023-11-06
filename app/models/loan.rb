@@ -26,6 +26,6 @@ class Loan < ApplicationRecord
   validates :user_id, uniqueness: { scope: :resource_id }
   
   belongs_to :user
-  belongs_to :resource
+  belongs_to :resource, counter_cache: :loans_count
   belongs_to :loan_duration
 end

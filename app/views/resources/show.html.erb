@@ -9,8 +9,10 @@
 <%= render 'reads/reads_button', resource: @resource %>
 <br>
 <%= render 'loans/loans_button', resource: @resource %>
+<br>
+<%#= render 'waitlists/waitlists_button', resource: @resource %>
 
-<h1><%= @resource.title %></h1>
+<h1><%= @resource.name %></h1>
 <p><%= @resource.description %></p>
 <p>Published: <%= @resource.published_date %></p>
 <p>Pages: <%= @resource.pages %></p>
