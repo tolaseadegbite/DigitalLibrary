@@ -12,6 +12,9 @@
 
   <body class="w-75" style="background: #e1dcc5; margin: 0 auto">
     <%= render 'layouts/navbar' %>
+    <div id="flash" class="flash">
+        <%= render "layouts/flash" %>
+      </div>
     <%= yield %>
   </body>
 </html>
