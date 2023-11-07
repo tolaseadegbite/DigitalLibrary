@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
 
     def index
-        @resources = Resource.all
+        @resources = Resource.order(id: :desc)
     end
 
     def show

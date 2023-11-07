@@ -6,16 +6,17 @@
         <% if loan.nil? %>
             <% unless resource.copies == resource.loans_count %>
                 <!-- Loan options modal -->
-                <button type="button" class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Borrow options
+                <button type="button" class="btn my-3 w-100 btn-primary border" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Borrow
                 </button>
             <% else %>
-                Not available, <%= render 'waitlists/waitlists_button', resource: @resource %>
+                Not available, <%= render 'waitlists/waitlists_button', resource: resource %>
             <% end %>
         <% else %>
+            <%= link_to 'Start reading', '#', class: "btn btn-success rounded-1 w-100 mt-3" %>
             <%= form_with url: loan_path(loan), method: :delete do |f| %>
             
-                <%= f.button class: "btn btn-success border rounded-1" do %>
+                <%= f.button class: "btn bg-primary-subtle border rounded-1 w-100 my-3" do %>
                     Return <%= loan.resource.resource_type.name %>
                 <% end %>
             <% end %>
@@ -25,7 +26,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal modal-dialog-centered">
     <div class="modal-content rounded-0">
       <div class="row text-dark p-3">
         <h5>Loan duration:</h5>
@@ -33,8 +34,8 @@
             <%= f.hidden_field :resource_id, value: resource.id %>
             <%= f.select :loan_duration_id, LoanDuration.all.pluck(:days, :id), {  }, class: "form-control rounded-0" %>
             
-            <%= f.button class: "btn btn-sm rounded-1 btn-success border mt-3" do %>
-                Borrow
+            <%= f.button class: "btn btn-sm btn-success rounded-1 border mt-3" do %>
+                Submit
             <% end %>
         <% end %>
       </div>

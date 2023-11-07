@@ -1,29 +1,60 @@
-<div class="cover-image">
-    <%= image_tag(@resource.cover_image, size: "180x290.31") %>
+<div class="container bg-white p-4">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="cover-image text-center border p-2 rounded-2">
+                <%= image_tag(@resource.cover_image, size: "180x290.31") %>
+                
+                <%= render 'loans/loans_button', resource: @resource %>
+
+                <h5 class="mt-2">Add to Collection:</h5>
+
+                <%= render 'potential_reads/potential_reads_button', resource: @resource %>
+                
+                <%= render 'readings/readings_button', resource: @resource %>
+                
+                <%= render 'reads/reads_button', resource: @resource %>
+                
+                <%#= render 'waitlists/waitlists_button', resource: @resource %>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <h1><%= @resource.name %></h1>
+            <p class="my-2">by <%= link_to @resource.author.name, author_path(@resource.author) %></p>
+            <div class="reading-stats fw-bold mt-4 mb-4 d-flex justify-content-between w-75">
+                <div><%= pluralize(@resource.potential_reads_count, 'Want to read') %></div>
+                <div><%= pluralize(@resource.readings_count, 'Currently reading') %></div>
+                <div><%= pluralize(@resource.reads_count, 'Have read') %></div>
+                <div><%= pluralize(@resource.borrowers.count, 'Borrower') %></div>
+            </div>
+            <p><%= @resource.description %></p>
+
+            <div class="publish-info d-flex justify-content-around text-center mt-5 mb-4">
+                <div class="border w-25 rounded-2">
+                    <small>
+                        <span class="text-secondary">Publish Date</span>
+                        <p><%= @resource.published_date %></p></p>
+                    </small>
+                </div>
+
+                <div class="border w-25 rounded-2">
+                    <small>
+                        <span class="text-secondary">Publisher</span>
+                        <p><%= @resource.publisher.name %></p></p>
+                    </small>
+                </div>
+
+                <div class="border w-25 rounded-2">
+                    <small>
+                        <span class="text-secondary">Language</span>
+                        <p><%= @resource.resource_language.name %></p></p>
+                    </small>
+                </div>
+            </div>
+            <p>Pages: <%= @resource.pages %></p>
+            <p>Copies: <%= @resource.copies %></p>
+            <p>Category: <%= link_to @resource.category.name, categories_path(@resource.category) %></p>
+            <p>Resource type: <%= link_to @resource.resource_type.name, '#' %></p>
+
+    </div>
 </div>
-
-<%= render 'potential_reads/potential_reads_button', resource: @resource %>
-<br>
-<%= render 'readings/readings_button', resource: @resource %>
-<br>
-<%= render 'reads/reads_button', resource: @resource %>
-<br>
-<%= render 'loans/loans_button', resource: @resource %>
-<br>
-<%#= render 'waitlists/waitlists_button', resource: @resource %>
-
-<h1><%= @resource.name %></h1>
-<p><%= @resource.description %></p>
-<p>Published: <%= @resource.published_date %></p>
-<p>Pages: <%= @resource.pages %></p>
-<p>Author: <%= link_to @resource.author.name, author_path(@resource.author) %></p>
-<p>Category: <%= link_to @resource.category.name, categories_path(@resource.category) %></p>
-<p>Resource type: <%= link_to @resource.resource_type.name, '#' %></p>
-
-<% if @resource.editions.present? %>
-    <ul>
-        <% @resource.editions.each do |edition| %>
-            <li><%= edition.name %> | <%= edition.published_date %></li>
-        <% end %>
-    </ul>
-<% end %>

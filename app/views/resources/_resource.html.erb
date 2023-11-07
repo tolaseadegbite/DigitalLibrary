@@ -1,0 +1,8 @@
+<div class="col-md-2 text-center">
+    <div class="img">
+        <%= link_to image_tag(resource.cover_image, size: "180x290.31"), resource %>
+    </div>
+    <div class="">
+        <%= render 'loans/loans_button', resource: resource %>
+    </div>
+</div>

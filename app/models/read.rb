@@ -21,5 +21,5 @@
 #
 class Read < ApplicationRecord
   belongs_to :user
-  belongs_to :resource
+  belongs_to :resource, counter_cache: :reads_count
 end

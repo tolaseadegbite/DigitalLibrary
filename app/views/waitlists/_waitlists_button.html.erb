@@ -9,14 +9,14 @@
                 <%= f.hidden_field :resource_id, value: resource.id %>
                 <%#= f.hidden_field :likeable_type, value: likeable.class.to_s %>
                 
-                <%= f.button class: "btn rounded-1 btn-light border" do %>
+                <%= f.button class: "btn rounded-1 bg-black text-white border" do %>
                     Add to waitlist
                 <% end %>
             <% end %>
         <% else %>
             <%= form_with url: waitlist_path(waitlist), method: :delete do |f| %>
                 
-                <%= f.button class: "btn btn-success border rounded-1" do %>
+                <%= f.button class: "btn btn-warning border rounded-1" do %>
                     Remove from waitlist
                 <% end %>
             <% end %>

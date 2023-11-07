@@ -9,14 +9,14 @@
                 <%= f.hidden_field :resource_id, value: resource.id %>
                 <%#= f.hidden_field :likeable_type, value: likeable.class.to_s %>
                 
-                <%= f.button class: "btn rounded-1 btn-light border" do %>
+                <%= f.button class: "btn rounded-1 btn-light border w-100" do %>
                     Want to read
                 <% end %>
             <% end %>
         <% else %>
             <%= form_with url: potential_read_path(potential_read), method: :delete do |f| %>
                 
-                <%= f.button class: "btn btn-success border rounded-1" do %>
+                <%= f.button class: "btn btn-success border rounded-1 w-100" do %>
                     Remove from potential reads
                 <% end %>
             <% end %>
