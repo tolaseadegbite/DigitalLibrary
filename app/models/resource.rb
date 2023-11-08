@@ -40,6 +40,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Resource < ApplicationRecord
+    validates :copies, :description, :name, :pages, :published_date, :author_id, :category_id, :publisher_id, :resource_language_id, :resource_type_id, :user_id
+
     belongs_to :resource_type
     validates :name, :author_id, :category_id, :publisher_id, :user_id, presence: true
     belongs_to :user
