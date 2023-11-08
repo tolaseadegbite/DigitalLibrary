@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'resource_types/index'
+  get 'resource_types/show'
+  get 'resource_languages/index'
+  get 'resource_languages/show'
+  get 'categories/index'
+  get 'categories/show'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
@@ -12,7 +18,11 @@ Rails.application.routes.draw do
   resources :resources
   resources :authors
   resources :publishers
-  resources :categories
+  resources :categories, only: [:index, :show]
+  resources :authors, only: [:index, :show]
+  resources :publishers, only: [:index, :show]
+  resources :resource_languages, only: [:index, :show]
+  resources :resource_types, only: [:index, :show]
   resources :potential_reads, only: [:create, :destroy]
   resources :readings, only: [:create, :destroy]
   resources :reads, only: [:create, :destroy]

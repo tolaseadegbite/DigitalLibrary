@@ -1,0 +1,8 @@
+<div class="container bg-white p-4">
+
+    <h1>Resource Languages</h1>
+
+    <% @resource_languages.each do |resource_language| %>
+        <span class="fs-5 me-3"><%= link_to resource_language.name, resource_language %></span>
+    <% end %>
+</div>

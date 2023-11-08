@@ -1,0 +1,8 @@
+<div class="container bg-white p-4">
+
+    <h1>Publishers</h1>
+
+    <% @publishers.each do |publisher| %>
+        <span class="fs-5 me-3"><%= link_to publisher.name, publisher %></span>
+    <% end %>
+</div>

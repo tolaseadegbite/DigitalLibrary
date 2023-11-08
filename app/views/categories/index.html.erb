@@ -1,0 +1,8 @@
+<div class="container bg-white p-4">
+
+    <h1>Categories</h1>
+
+    <% @categories.each do |category| %>
+        <span class="fs-5 me-3"><%= link_to category.name, category %></span>
+    <% end %>
+</div>

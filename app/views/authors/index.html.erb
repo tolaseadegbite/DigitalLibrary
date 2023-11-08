@@ -1,0 +1,8 @@
+<div class="container bg-white p-4">
+
+    <h1>Authors</h1>
+
+    <% @authors.each do |author| %>
+        <span class="fs-5 me-3"><%= link_to author.name, author %></span>
+    <% end %>
+</div>
