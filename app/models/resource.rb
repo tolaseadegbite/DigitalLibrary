@@ -58,6 +58,13 @@ class Resource < ApplicationRecord
 
     has_one_attached :cover_image
 
+    has_one_attached :file
+
+    validates :file, presence: true,   content_type: { in: %w[application/pdf],
+                                      message: "must be a pdf format" },
+                      size:         { less_than: 5.megabytes,
+                                      message:   "should be less than 5MB" }
+
     validates :cover_image, presence: true,   content_type: { in: %w[image/jpeg image/png],
                                       message: "must be a valid image format" },
                       size:         { less_than: 1.megabytes,

@@ -13,7 +13,12 @@
                 Not available, <%= render 'waitlists/waitlists_button', resource: resource %>
             <% end %>
         <% else %>
-            <%= link_to 'Start reading', '#', class: "btn btn-success rounded-1 w-100 mt-3" %>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success rounded-1 w-100 mt-3" data-bs-toggle="modal" data-bs-target="#readModal">
+            Start reading
+            </button>
+
             <%= form_with url: loan_path(loan), method: :delete do |f| %>
             
                 <%= f.button class: "btn bg-primary-subtle border rounded-1 w-100 my-3" do %>
@@ -38,6 +43,24 @@
                 Submit
             <% end %>
         <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Read Modal -->
+<div class="modal fade" id="readModal" tabindex="-1" aria-labelledby="readModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">You are reading: <%= resource.name %></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <embed src="<%= polymorphic_url(resource.file) %>" type="application/pdf" width="500" height="500">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
