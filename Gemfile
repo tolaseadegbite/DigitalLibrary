@@ -63,3 +63,11 @@ group :production do
   # gem "pg",         "1.3.5"
   gem "aws-sdk-s3", "1.114.0", require: false
 end
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "redis", "~> 5.0"
+
+gem "sentry-ruby", "~> 5.12"
+
+gem "sentry-rails", "~> 5.12"
