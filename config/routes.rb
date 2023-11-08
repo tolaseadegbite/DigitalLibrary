@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'resource_types/index'
-  get 'resource_types/show'
-  get 'resource_languages/index'
-  get 'resource_languages/show'
-  get 'categories/index'
-  get 'categories/show'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'

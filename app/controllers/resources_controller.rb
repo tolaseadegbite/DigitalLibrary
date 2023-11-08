@@ -6,6 +6,7 @@ class ResourcesController < ApplicationController
 
     def show
         @resource = Resource.find(params[:id])
+        @related_resources = @resource.category.resources.where.not(id: @resource).limit(6)
     end
 
     private

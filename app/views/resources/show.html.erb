@@ -6,7 +6,7 @@
                 
                 <%= render 'loans/loans_button', resource: @resource %>
 
-                <h5 class="mt-2">Add to Collection:</h5>
+                <h5 class="mt-2">Add to Shelf:</h5>
 
                 <%= render 'potential_reads/potential_reads_button', resource: @resource %>
                 
@@ -53,8 +53,19 @@
             </div>
             <p>Pages: <%= @resource.pages %></p>
             <p>Copies: <%= @resource.copies %></p>
-            <p>Category: <%= link_to @resource.category.name, categories_path(@resource.category) %></p>
-            <p>Resource type: <%= link_to @resource.resource_type.name, '#' %></p>
+            <p>Category: <%= link_to @resource.category.name, @resource.category %></p>
+            <p>Resource type: <%= link_to @resource.resource_type.name, @resource.resource_type %></p>
+        </div>
 
+    </div>
+</div>
+
+<br>
+
+<div class="wrapper mb-3 border border-secondary rounded-2">
+    <br><h1 class="bg-white py-2 ps-4">Related Resources</h1>
+
+    <div class="row my-4 mx-2">
+        <%= render @related_resources %>
     </div>
 </div>
