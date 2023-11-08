@@ -18,4 +18,12 @@ Rails.application.routes.draw do
   resources :reads, only: [:create, :destroy]
   resources :loans, only: [:create, :destroy]
   resources :waitlists, only: [:create, :destroy]
+
+  get '/:username/resources', to: 'profiles#show', as: :profile
+  get '/:username/edit', to: 'profiles#update', as: :edit_profile
+
+  get '/:username/resources/loans', to: 'profiles#loans', as: :user_loans
+  get '/:username/resources/currently-reading', to: 'profiles#currently_reading', as: :user_readings
+  get '/:username/resources/want-to-read', to: 'profiles#want_to_read', as: :user_want_to_read
+  get '/:username/resources/already-read', to: 'profiles#already_read', as: :user_already_read
 end

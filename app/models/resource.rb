@@ -55,6 +55,9 @@ class Resource < ApplicationRecord
     has_many :waitlists, dependent: :destroy
     has_many :loans, dependent: :destroy
     has_many :borrowers, through: :loans, source: :user
+    has_many :want_to_read_users, through: :potential_reads, source: :user
+    has_many :reading_users, through: :readings, source: :user
+    has_many :read_users, through: :reads, source: :user
 
     has_one_attached :cover_image
 

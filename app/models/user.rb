@@ -32,8 +32,11 @@ class User < ApplicationRecord
   has_many :categories, dependent: :destroy
   has_many :editions, dependent: :destroy
   has_many :potential_reads, dependent: :destroy
+  has_many :potential_read_resources, through: :potential_reads, source: :resource
   has_many :readings, dependent: :destroy
+  has_many :reading_resources, through: :readings, source: :resource
   has_many :reads, dependent: :destroy
+  has_many :read_resources, through: :reads, source: :resource
   has_many :loans, dependent: :destroy
   has_many :borrowed_resources, through: :loans, source: :resource
   has_many :resource_languages, dependent: :destroy

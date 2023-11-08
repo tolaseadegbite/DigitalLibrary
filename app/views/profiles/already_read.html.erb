@@ -1,0 +1,23 @@
+<div class="container bg-white mb-4">
+    <div class="row">
+        <div class="col-md-3" style="background: hsla(0,0%,78%,.23);">
+            <%= render 'profiles/sidebar' %>
+        </div>
+
+        <div class="col-md-9 my-3">
+            <h2>Already Read Collection</h2>
+            <div class="row my-4 mx-2">
+                <% @user.read_resources.each do |resource| %>
+                    <div class="col-md-3 text-center">
+                        <div class="img">
+                            <%= link_to image_tag(resource.cover_image, size: "180x290.31"), resource %>
+                        </div>
+                        <div class="">
+                            <%= link_to 'View details', resource, class: "btn btn-primary w-100 mx-auto my-3" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
