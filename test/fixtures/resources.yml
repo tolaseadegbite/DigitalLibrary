@@ -5,9 +5,11 @@
 #  id                    :bigint           not null, primary key
 #  copies                :integer
 #  description           :text
+#  image_url             :string
 #  loans_count           :integer
 #  name                  :string
 #  pages                 :integer
+#  pdf_url               :string
 #  potential_reads_count :integer          default(0), not null
 #  published_date        :date
 #  readings_count        :integer          default(0), not null

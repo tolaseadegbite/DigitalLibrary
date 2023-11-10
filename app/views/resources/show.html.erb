@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="cover-image text-center border p-2 rounded-2">
-                <%= image_tag(@resource.cover_image, size: "180x290.31") %>
+                <%= image_tag(@resource.cover_image, size: "180x290.31") if @resource.cover_image.attached? %>
                 
                 <%= render 'loans/loans_button', resource: @resource %>
 
@@ -21,12 +21,14 @@
         <div class="col-md-9">
             <h1><%= @resource.name %></h1>
             <p class="my-2">by <%= link_to @resource.author.name, author_path(@resource.author) %></p>
-            <div class="reading-stats fw-bold mt-4 mb-4 d-flex justify-content-between w-75">
-                <div><%= pluralize(@resource.potential_reads_count, 'Want to read') %></div>
-                <div><%= pluralize(@resource.readings_count, 'Currently reading') %></div>
-                <div><%= pluralize(@resource.reads_count, 'Have read') %></div>
-                <div><%= pluralize(@resource.borrowers.count, 'Borrower') %></div>
+            <div class="reading-stats fw-bold mt-4 mb-4 d-flex justify-content-between">
+                <div class="me-2"><%= pluralize(@resource.potential_reads_count, 'Want to read') %></div>
+                <div class="me-2"><%= pluralize(@resource.readings_count, 'Currently reading') %></div>
+                <div class="me-2"><%= pluralize(@resource.reads_count, 'Have read') %></div>
+                <div class="me-2"><%= pluralize(@resource.borrowers.count, 'Borrower') %></div>
             </div>
+            <div class="me-2 fw-bold"><%= pluralize(@resource.waitlists.count, 'user') %> are waiting to borrow this resource.</div>
+            <br>
             <p><%= @resource.description %></p>
 
             <div class="publish-info d-flex justify-content-around text-center mt-5 mb-4">

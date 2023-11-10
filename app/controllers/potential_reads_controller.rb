@@ -8,14 +8,14 @@ class PotentialReadsController < ApplicationController
             flash[:notice] = @potential_read.errors.full_messages.to_sentence
         end
 
-        redirect_back(fallback_location: root_path, notice: "Added to want to potential reads shelf")
+        redirect_back(fallback_location: root_path, notice: "Added to Want to Reads shelf")
     end
 
     def destroy
         @potential_read = current_user.potential_reads.find(params[:id])
         resource = @potential_read.resource
         @potential_read.destroy
-        redirect_back(fallback_location: root_path, notice: "Removed from potential reads shelf")
+        redirect_back(fallback_location: root_path, notice: "Removed from Want to Reads shelf")
     end
 
     private

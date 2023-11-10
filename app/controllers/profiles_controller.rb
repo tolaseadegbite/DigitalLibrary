@@ -38,20 +38,6 @@ class ProfilesController < ApplicationController
       @loans = @user.loans
     end
   
-    def user_likes
-      @likes = @user.liked_episodes
-    end
-  
-    def user_comment_likes
-      render 'profiles/user_likes'
-    end
-  
-    def trending
-    end
-  
-    def history
-    end
-  
     private
   
     def profile_params
@@ -61,13 +47,6 @@ class ProfilesController < ApplicationController
     def find_user
       @user ||= User.find_by(username: params[:username])
     end
-  
-    def find_channel
-      @potential_reads ||= @user.potential
-    end
-  
-    def find_episodes
-      @channel ||= @user.episodes
-    end
+
   end
   

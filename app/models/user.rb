@@ -30,7 +30,6 @@ class User < ApplicationRecord
   has_many :authors, dependent: :destroy
   has_many :publishers, dependent: :destroy
   has_many :categories, dependent: :destroy
-  has_many :editions, dependent: :destroy
   has_many :potential_reads, dependent: :destroy
   has_many :potential_read_resources, through: :potential_reads, source: :resource
   has_many :readings, dependent: :destroy

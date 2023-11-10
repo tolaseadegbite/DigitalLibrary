@@ -7,70 +7,46 @@
         <div class="col-md-9 my-3">
             <h2>My Shelves</h2>
             <h4 class="mt-3"><%= link_to "My Loans", user_loans_path(@user.username) %></h4>
-            <div class="row my-4 mx-2">
-                <% @user.borrowed_resources.each do |resource| %>
-                    <div class="col-md-3 text-center">
-                        <div class="img">
-                            <%= link_to image_tag(resource.cover_image, size: "180x290.31"), resource %>
-                        </div>
-                        <div class="">
-                            <%= link_to 'View details', resource, class: "btn btn-primary w-100 mx-auto my-3" %>
-                        </div>
-                    </div>
+            <div class="row my-4 gap-5">
+                <% if @user.borrowed_resources.present? %>
+                    <% @user.borrowed_resources.limit(4).each do |resource| %>
+                        <%= render 'resources/resource', resource: resource %>
+                    <% end %>
+                <% else %>
+                    <p>No resources on this shelf</p>
                 <% end %>
             </div>
 
             <h4 class="mt-3"><%= link_to "Currently Reading", user_readings_path(@user.username) %></h4>
-            <div class="row my-4 mx-2">
+            <div class="row my-4 gap-5">
                 <% if @user.reading_resources.present? %>
                     <% @user.reading_resources.each do |resource| %>
-                        <div class="col-md-3 text-center">
-                            <div class="img">
-                                <%= link_to image_tag(resource.cover_image, size: "180x290.31"), resource %>
-                            </div>
-                            <div class="">
-                                <%= link_to 'View details', resource, class: "btn btn-primary w-100 mx-auto my-3" %>
-                            </div>
-                        </div>
+                        <%= render 'resources/resource', resource: resource %>
                     <% end %>
                 <% else %>
-                    <p>No books on this shelf</p>
+                    <p>No resources on this shelf</p>
                 <% end %>
             </div>
 
             <h4 class="mt-3"><%= link_to "Want to Read", user_want_to_read_path(@user.username) %></h4>
-            <div class="row my-4 mx-2">
+            <div class="row my-4 gap-5">
                 <% if @user.potential_read_resources.present? %>
                     <% @user.potential_read_resources.each do |resource| %>
-                        <div class="col-md-3 text-center">
-                            <div class="img">
-                                <%= link_to image_tag(resource.cover_image, size: "180x290.31"), resource %>
-                            </div>
-                            <div class="">
-                                <%= link_to 'View details', resource, class: "btn btn-primary w-100 mx-auto my-3" %>
-                            </div>
-                        </div>
+                        <%= render 'resources/resource', resource: resource %>
                     <% end %>
                 <% else %>
-                    <p>No books on this shelf</p>
+                    <p>No resources on this shelf</p>
                 <% end %>
             </div>
 
             <h4 class="mt-3"><%= link_to "Already Read", user_already_read_path(@user.username) %></h4>
-            <div class="row my-4 mx-2">
+            <div class="row my-4 gap-5">
                 <% if @user.read_resources.present? %>
                     <% @user.read_resources.each do |resource| %>
-                        <div class="col-md-3 text-center">
-                            <div class="img">
-                                <%= link_to image_tag(resource.cover_image, size: "180x290.31"), resource %>
-                            </div>
-                            <div class="">
-                                <%= link_to 'View details', resource, class: "btn btn-primary w-100 mx-auto my-3" %>
-                            </div>
-                        </div>
+                        <%= render 'resources/resource', resource: resource %>
                     <% end %>
                 <% else %>
-                    <p>No books on this shelf</p>
+                    <p>No resources on this shelf</p>
                 <% end %>
             </div>
         </div>

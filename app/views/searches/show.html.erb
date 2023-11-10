@@ -1,0 +1,13 @@
+<div class="wrapper mb-3 border border-secondary rounded-2" style="background: #f3edd7">
+    <br><h1 class="bg-white py-2 ps-4">Search Result</h1>
+
+    <div class="row my-4 mx-2">
+        <% if @search.search_resources.present? %>
+            <% @search.search_resources.each do |resource| %>
+                <%= render 'resources/resource', resource: resource %>
+            <% end %>
+        <% else %>
+            <p>No Records Found</p>
+        <% end %>
+    </div>
+</div>

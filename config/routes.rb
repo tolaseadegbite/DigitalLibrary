@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount RailsAdmin::Engine => '/administration', as: 'rails_admin'
+  end
 
   # mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 
@@ -10,8 +13,7 @@ Rails.application.routes.draw do
   root "resources#index"
 
   resources :resources
-  resources :authors
-  resources :publishers
+  resources :searches
   resources :categories, only: [:index, :show]
   resources :authors, only: [:index, :show]
   resources :publishers, only: [:index, :show]

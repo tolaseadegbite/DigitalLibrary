@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: searches
+#
+#  id                   :bigint           not null, primary key
+#  keyword              :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  author_id            :integer
+#  category_id          :integer
+#  publisher_id         :integer
+#  resource_language_id :integer
+#  resource_type_id     :integer
+#
+
+one:
+  keyword: MyString
+  category_id: 1
+  author_id: 1
+  publisher_id: 1
+  resource_language_id: 1
+  resource_type_id: 1
+
+two:
+  keyword: MyString
+  category_id: 1
+  author_id: 1
+  publisher_id: 1
+  resource_language_id: 1
+  resource_type_id: 1

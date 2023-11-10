@@ -28,10 +28,13 @@
         <% end %>
       </ul>
       
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <!-- Search trigger modal -->
+      <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#searchModal">
+        <i class="bi bi-search"></i>
+        Search
+      </button>
+
+      <%= render 'layouts/search_modal' %>
 
       <ul class="navbar-nav mb-2 mb-lg-0">
         <% if user_signed_in? %>

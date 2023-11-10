@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
 
     def index
-        @resources = Resource.order(id: :desc)
+        @resources = Resource.order(id: :desc).where(["name LIKE ?","%#{params[:search]}%"])
     end
 
     def show

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_07_142342) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_09_203114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,17 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_142342) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
-  end
-
-  create_table "editions", force: :cascade do |t|
-    t.string "name"
-    t.date "published_date"
-    t.bigint "user_id", null: false
-    t.bigint "resource_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["resource_id"], name: "index_editions_on_resource_id"
-    t.index ["user_id"], name: "index_editions_on_user_id"
   end
 
   create_table "loan_durations", force: :cascade do |t|
@@ -161,12 +150,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_142342) do
     t.integer "potential_reads_count", default: 0, null: false
     t.integer "reads_count", default: 0, null: false
     t.integer "readings_count", default: 0, null: false
+    t.string "image_url"
+    t.string "pdf_url"
     t.index ["author_id"], name: "index_resources_on_author_id"
     t.index ["category_id"], name: "index_resources_on_category_id"
     t.index ["publisher_id"], name: "index_resources_on_publisher_id"
     t.index ["resource_language_id"], name: "index_resources_on_resource_language_id"
     t.index ["resource_type_id"], name: "index_resources_on_resource_type_id"
     t.index ["user_id"], name: "index_resources_on_user_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "keyword"
+    t.integer "category_id"
+    t.integer "author_id"
+    t.integer "publisher_id"
+    t.integer "resource_language_id"
+    t.integer "resource_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -197,8 +199,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_142342) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "users"
-  add_foreign_key "editions", "resources"
-  add_foreign_key "editions", "users"
   add_foreign_key "loan_durations", "users"
   add_foreign_key "loans", "loan_durations"
   add_foreign_key "loans", "resources"

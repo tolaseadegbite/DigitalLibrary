@@ -5,9 +5,11 @@
 #  id                    :bigint           not null, primary key
 #  copies                :integer
 #  description           :text
+#  image_url             :string
 #  loans_count           :integer
 #  name                  :string
 #  pages                 :integer
+#  pdf_url               :string
 #  potential_reads_count :integer          default(0), not null
 #  published_date        :date
 #  readings_count        :integer          default(0), not null
@@ -50,7 +52,6 @@ class Resource < ApplicationRecord
     belongs_to :publisher
     belongs_to :resource_language
 
-    has_many :editions, dependent: :destroy
     has_many :potential_reads, dependent: :destroy
     has_many :readings, dependent: :destroy
     has_many :reads, dependent: :destroy
@@ -61,13 +62,21 @@ class Resource < ApplicationRecord
     has_many :reading_users, through: :readings, source: :user
     has_many :read_users, through: :reads, source: :user
 
+    # def self.search(search)
+    #     if search
+    #         where(["name LIKE ?","%#{params[:search]}%"])
+    #     else
+    #         order(id: :desc)
+    #     end
+    # end
+
     has_one_attached :cover_image
 
     has_one_attached :file
 
     validates :file, presence: true,   content_type: { in: %w[application/pdf],
                                       message: "must be a pdf format" },
-                      size:         { less_than: 5.megabytes,
+                      size:         { less_than: 50.megabytes,
                                       message:   "should be less than 5MB" }
 
     validates :cover_image, presence: true,   content_type: { in: %w[image/jpeg image/png],

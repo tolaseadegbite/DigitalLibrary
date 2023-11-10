@@ -8,7 +8,7 @@ class ReadsController < ApplicationController
             flash[:notice] = @read.errors.full_messages.to_sentence
         end
 
-        redirect_back(fallback_location: root_path, notice: "Added to want to Already Read shelf")
+        redirect_back(fallback_location: root_path, notice: "Added to Already Read shelf")
     end
 
     def destroy

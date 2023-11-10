@@ -1,0 +1,40 @@
+<div class="container bg-white p-4">
+    <h1>Custom Search</h1>
+
+    <%= form_with model: @search do |f| %>
+
+        <div class="mb-3">
+            <%= f.label :keyword %>
+            <%= f.text_field :keyword, class: "form-control", style: "background: #e1dcc5;" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :category %>
+            <%= f.select :category_id, Category.all.pluck(:name, :id), { include_blank: true }, class: "form-control", style: "background: #e1dcc5;" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :author_id %>
+            <%= f.select :author_id, Author.all.pluck(:name, :id), { include_blank: true }, class: "form-control", style: "background: #e1dcc5;" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :publisher_id %>
+            <%= f.select :publisher_id, Publisher.all.pluck(:name, :id), { include_blank: true }, class: "form-control", style: "background: #e1dcc5;" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :resource_language_id %>
+            <%= f.select :resource_language_id, ResourceLanguage.all.pluck(:name, :id), { include_blank: true }, class: "form-control", style: "background: #e1dcc5;" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :resource_type_id %>
+            <%= f.select :resource_type_id, ResourceType.all.pluck(:name, :id), { include_blank: true }, class: "form-control", style: "background: #e1dcc5;" %>
+        </div>
+
+        <div class="submit">
+            <%= f.submit "Search", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+</div>

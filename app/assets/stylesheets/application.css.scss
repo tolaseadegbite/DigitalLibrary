@@ -1,0 +1,10 @@
+// @import '../../node_modules/bootstrap/scss/bootstrap';
+// @import '../../node_modules/bootstrap-icons/font/bootstrap-icons';
+// Google font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+// custom styles
+@import 'components/navbar';
+@import 'components/flash';
+@import 'config/animations';
+@import 'config/variables';
