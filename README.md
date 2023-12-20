@@ -8,4 +8,9 @@ This is a basic Digital Library app
 * Administration with Rails Admin gem
 * Borrow feature
 * Basic and advanced search
-* Filtering 
+* Filtering
+* File upload to S3
+* Deployment to Fly
+
+### Demo app
+<a href="https://digital-library.fly.dev/">See app on fly.io</a>
