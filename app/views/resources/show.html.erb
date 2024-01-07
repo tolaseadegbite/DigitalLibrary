@@ -25,7 +25,7 @@
                 <div class="me-2"><%= pluralize(@resource.potential_reads_count, 'Want to read') %></div>
                 <div class="me-2"><%= pluralize(@resource.readings_count, 'Currently reading') %></div>
                 <div class="me-2"><%= pluralize(@resource.reads_count, 'Have read') %></div>
-                <div class="me-2"><%= pluralize(@resource.borrowers.count, 'Borrower') %></div>
+                <div class="me-2"><%= pluralize(@resource.loans_count, 'Borrower') %></div>
             </div>
             <div class="me-2 fw-bold"><%= pluralize(@resource.waitlists.count, 'user') %> are waiting to borrow this resource.</div>
             <br>

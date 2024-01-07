@@ -8,14 +8,14 @@ class LoansController < ApplicationController
             flash[:notice] = @loan.errors.full_messages.to_sentence
         end
 
-        redirect_back(fallback_location: root_path, notice: "Loan successful")
+        redirect_back(fallback_location: root_path, notice: "Resource successfully borrowed")
     end
 
     def destroy
         @loan = current_user.loans.find(params[:id])
         resource = @loan.resource
         @loan.destroy
-        redirect_back(fallback_location: root_path, notice: "Loan returned")
+        redirect_back(fallback_location: root_path, notice: "Resource successfully returned")
     end
 
     private
